@@ -25,12 +25,12 @@ local AttackIDs = {["106300477136129"]=true,["127793641088496"]=true,["112809109
 ["104910828105172"]=true,["754675462151"]=true,["1838561084"]=true,["1838561146"]=true,["805165833096"]=true}
 
 local Config = {
-    AutoBlock = false, BlockRange = 18, Verify = 0.11, MaxBPS = 10,
-    OnlyLook = true, Loose = false, ESP = false, Cone = false,
-    HDTech = false, AntiFlick = true, FlickParts = 6,
-    PredictBlock = true, PredictStrength = 2.4, TurnPredict = 1.9,
-    AutoPunch = false, PunchDelay = 0.07, AimPunch = true, FlingPunch = false, FlingPower = 15000,
-    PredictionValue = 4, HitboxDrag = false, DragSpeed = 5.6, DragDelay = 0
+    AutoBlock = false, BlockRange = 18, Verify = 0.11, MaxBPS = 10,
+    OnlyLook = true, Loose = false, ESP = false, Cone = false,
+    HDTech = false, AntiFlick = true, FlickParts = 6,
+    PredictBlock = true, PredictStrength = 2.4, TurnPredict = 1.9,
+    AutoPunch = false, PunchDelay = 0.07, AimPunch = true, FlingPunch = false, FlingPower = 15000,
+    PredictionValue = 4, HitboxDrag = false, DragSpeed = 5.6, DragDelay = 0
 }
 
 local ActiveSwing = {}
@@ -43,11 +43,11 @@ local KillerDelays = {c00lkidd=0,jason=0.013,slasher=0.01,["1x1x1x1"]=0.15,johnd
 local LastPunch = 0
 
 local Window = Rayfield:CreateWindow({
-    Name = "ZEN AB -",
-    LoadingTitle = "Made By Zen",
-    LoadingSubtitle = "AB",
-    Theme = "Ocean",
-    ConfigurationSaving = {Enabled = true, FileName = "Zen Ab"}
+    Name = "Zen AB - GOD",
+    LoadingTitle = "PRO VET PRO GOD",
+    LoadingSubtitle = "auto Block",
+    Theme = "Ocean",
+    ConfigurationSaving = {Enabled = true, FileName = "TrinityGOD"}
 })
 
 local Combat = Window:CreateTab("Combat")
@@ -81,107 +81,109 @@ Visual:CreateToggle({Name="Disk ESP",Callback=function(v)Config.ESP=v if not v t
 Visual:CreateToggle({Name="Facing Cone",Callback=function(v)Config.Cone=v if not v then for _,c in pairs(ConeParts)do c:Destroy()end ConeParts={}end end})
 
 local function spawnFlick(k)
-    if not Config.AntiFlick or FlickDebounce[k] then return end
-    FlickDebounce[k] = true task.delay(0.4,function()FlickDebounce[k]=nil end)
-    local hrp = k:FindFirstChild("HumanoidRootPart") if not hrp then return end
-    task.wait(KillerDelays[k.Name:lower()] or 0)
-    for i=1,Config.FlickParts do
-        local p = Instance.new("Part")
-        p.Size = Vector3.new(3.5,3.5,3.5)
-        p.Transparency = 0.5
-        p.Color = Color3.fromRGB(0,200,255)
-        p.Material = Enum.Material.Neon
-        p.CanCollide = false
-        p.Anchored = true
-        p.CFrame = hrp.CFrame * CFrame.new(0,0,-i*2.4)
-        p.Parent = workspace
-        Debris:AddItem(p,0.5)
-    end
+    if not Config.AntiFlick or FlickDebounce[k] then return end
+    FlickDebounce[k] = true task.delay(0.4,function()FlickDebounce[k]=nil end)
+    local hrp = k:FindFirstChild("HumanoidRootPart") if not hrp then return end
+    task.wait(KillerDelays[k.Name:lower()] or 0)
+    for i=1,Config.FlickParts do
+        local p = Instance.new("Part")
+        p.Size = Vector3.new(3.5,3.5,3.5)
+        p.Transparency = 0.5
+        p.Color = Color3.fromRGB(0,200,255)
+        p.Material = Enum.Material.Neon
+        p.CanCollide = false
+        p.Anchored = true
+        p.CFrame = hrp.CFrame * CFrame.new(0,0,-i*2.4)
+        p.Parent = workspace
+        Debris:AddItem(p,0.5)
+    end
 end
 
 local function updateESP()
-    if not Config.ESP or not LP.Character then return end
-    local me = LP.Character:FindFirstChild("HumanoidRootPart") if not me then return end
-    for _,k in ipairs(Killers:GetChildren()) do
-        local hrp = k:FindFirstChild("HumanoidRootPart")
-        if hrp then
-            if not ESPParts[k] then
-                local d = Instance.new("CylinderHandleAdornment")
-                d.Adornee = hrp d.AlwaysOnTop = true d.Transparency = 0.5 d.Height = 0.12 d.Radius = Config.BlockRange d.Color3 = Color3.fromRGB(255,0,0) d.Parent = hrp ESPParts[k] = d
-            end
-            local d = ESPParts[k]
-            d.Radius = Config.BlockRange
-            d.CFrame = CFrame.new(0,-(hrp.Size.Y/2+0.05),0)*CFrame.Angles(math.rad(90),0,0)
-            d.Color3 = (me.Position-hrp.Position).Magnitude <= Config.BlockRange and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
-        end
-    end
+    if not Config.ESP or not LP.Character then return end
+    local me = LP.Character:FindFirstChild("HumanoidRootPart") if not me then return end
+    for _,k in ipairs(Killers:GetChildren()) do
+        local hrp = k:FindFirstChild("HumanoidRootPart")
+        if hrp then
+            if not ESPParts[k] then
+                local d = Instance.new("CylinderHandleAdornment")
+                d.Adornee = hrp d.AlwaysOnTop = true d.Transparency = 0.5 d.Height = 0.12 d.Radius = Config.BlockRange d.Color3 = Color3.fromRGB(255,0,0) d.Parent = hrp ESPParts[k] = d
+            end
+            local d = ESPParts[k]
+            d.Radius = Config.BlockRange
+            d.CFrame = CFrame.new(0,-(hrp.Size.Y/2+0.05),0)*CFrame.Angles(math.rad(90),0,0)
+            d.Color3 = (me.Position-hrp.Position).Magnitude <= Config.BlockRange and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+        end
+    end
 end
 
 RunService.Heartbeat:Connect(function(dt)
-    updateESP()
-    if not LP.Character or not LP.Character:FindFirstChild("HumanoidRootPart") then return end
-    local me = LP.Character.HumanoidRootPart
-    local now = tick()
-    if now - LastSec >= 1 then BlockCount = 0 LastSec = now end
+    updateESP()
+    if not LP.Character or not LP.Character:FindFirstChild("HumanoidRootPart") then return end
+    local me = LP.Character.HumanoidRootPart
+    local now = tick()
+    if now - LastSec >= 1 then BlockCount = 0 LastSec = now end
 
-    for _,killer in ipairs(Killers:GetChildren()) do
-        local hrp = killer:FindFirstChild("HumanoidRootPart")
-        local head = killer:FindFirstChild("Head")
-        if not hrp or not head then continue end
-        local dist = (me.Position - hrp.Position).Magnitude
+    for _,killer in ipairs(Killers:GetChildren()) do
+        local hrp = killer:FindFirstChild("HumanoidRootPart")
+        local head = killer:FindFirstChild("Head")
+        if not hrp or not head then continue end
+        local dist = (me.Position - hrp.Position).Magnitude
 
-        -- AUTO BLOCK
-        if Config.AutoBlock and dist <= Config.BlockRange then
-            local attacking = false
-            for _,s in ipairs(killer:GetDescendants()) do
-                if s:IsA("Sound") and s.Playing then
-                    local id = tostring(s.SoundId:match("%d+$") or "")
-                    if AttackIDs[id] then attacking = true ActiveSwing[killer] = ActiveSwing[killer] or now break end
-                end
-            end
-            if attacking and (now - (ActiveSwing[killer] or 0)) >= Config.Verify then
-                local lv = head.CFrame.LookVector
-                local dir = (me.Position - head.Position).Unit
-                local dot = lv:Dot(dir)
-                local thresh = Config.Loose and -0.3 or 0.6
-                if not Config.OnlyLook or dot > thresh then
-                    if BlockCount < Config.MaxBPS then
-                        RE:FireServer("UseActorAbility", {"Block"})
-                        BlockCount += 1
-                        if Config.HDTech then LP.Character.Humanoid:MoveTo(hrp.Position) end
-                        spawnFlick(killer)
-                    end
-                end
-            end
-        end
+        -- AUTO BLOCK
+        if Config.AutoBlock and dist <= Config.BlockRange then
+            local attacking = false
+            for _,s in ipairs(killer:GetDescendants()) do
+                if s:IsA("Sound") and s.Playing then
+                    local id = tostring(s.SoundId:match("%d+$") or "")
+                    if AttackIDs[id] then attacking = true ActiveSwing[killer] = ActiveSwing[killer] or now break end
+                end
+            end
+            if attacking and (now - (ActiveSwing[killer] or 0)) >= Config.Verify then
+                local lv = head.CFrame.LookVector
+                local dir = (me.Position - head.Position).Unit
+                local dot = lv:Dot(dir)
+                local thresh = Config.Loose and -0.3 or 0.6
+                if not Config.OnlyLook or dot > thresh then
+                    if BlockCount < Config.MaxBPS then
+                        RE:FireServer("UseActorAbility", {"Block"})
+                        BlockCount += 1
+                        if Config.HDTech then LP.Character.Humanoid:MoveTo(hrp.Position) end
+                        spawnFlick(killer)
+                    end
+                end
+            end
+        end
 
-        -- Punch
-        if Config.AutoPunch and dist <= 14 and (now - LastPunch) > Config.PunchDelay then
-            LastPunch = now
-            task.spawn(function()
-                task.wait(Config.DragDelay)
-                if Config.AimPunch and head then
-                    LP.Character.HumanoidRootPart.CFrame = CFrame.new(LP.Character.HumanoidRootPart.Position, head.Position + Vector3.new(0,2,0))
-                end
-                if Config.HitboxDrag then
-                    local start = tick()
-                    local conn
-                    conn = RunService.Heartbeat:Connect(function()
-                        if tick() - start > 1.4 then conn:Disconnect() return end
-                        if hrp and LP.Character:FindFirstChild("Humanoid") then
-                            LP.Character.Humanoid:MoveTo(hrp.Position + Vector3.new(0,0,math.random(-2,2)))
-                        end
-                    end)
-                end
-                if Config.FlingPunch and hrp then
-                    local bv = Instance.new("BodyVelocity")
-                    bv.MaxForce = Vector3.new(1e5,1e5,1e5)
-                    bv.Velocity = (hrp.Position - me.Position).unit * Config.FlingPower
-                    bv.Parent = hrp
-                    Debris:AddItem(bv, 0.3)
-                end
-                RE:FireServer("UseActorAbility", {"Punch"})
-            end)
-        end
-    end
+        -- AUTO PUNCH
+        if Config.AutoPunch and dist <= 14 and (now - LastPunch) > Config.PunchDelay then
+            LastPunch = now
+            task.spawn(function()
+                task.wait(Config.DragDelay)
+                if Config.AimPunch and head then
+                    LP.Character.HumanoidRootPart.CFrame = CFrame.new(LP.Character.HumanoidRootPart.Position, head.Position + Vector3.new(0,2,0))
+                end
+                if Config.HitboxDrag then
+                    local start = tick()
+                    local conn
+                    conn = RunService.Heartbeat:Connect(function()
+                        if tick() - start > 1.4 then conn:Disconnect() return end
+                        if hrp and LP.Character:FindFirstChild("Humanoid") then
+                            LP.Character.Humanoid:MoveTo(hrp.Position + Vector3.new(0,0,math.random(-2,2)))
+                        end
+                    end)
+                end
+                if Config.FlingPunch and hrp then
+                    local bv = Instance.new("BodyVelocity")
+                    bv.MaxForce = Vector3.new(1e5,1e5,1e5)
+                    bv.Velocity = (hrp.Position - me.Position).unit * Config.FlingPower
+                    bv.Parent = hrp
+                    Debris:AddItem(bv, 0.3)
+                end
+                RE:FireServer("UseActorAbility", {"Punch"})
+            end)
+        end
+    end
 end)
+
+Rayfield:Notify({Title="Zen AB - Noob",Content="Noob Ab Or Pro",Duration=10})
